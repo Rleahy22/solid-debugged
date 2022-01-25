@@ -2,7 +2,7 @@
 
 This plugin makes it easy to debug your [SolidJS](https://www.solidjs.com/) applications at runtime. It provides drop-in replacements for `createSignal` and `createStore` that allow you to easily see the current state of your application in the browser console.
 
-It works by
+It works by storing signal and store values on a window property that can get picked up by a function included in this library or extended by other tools/apps for further functionality. In a production build both functions fall back to their respective functions exported by SolidJS.
 
 ## Getting started
 
@@ -33,7 +33,7 @@ const Component = () => {
 Then in the console
 
 ```javascript
-showSolidState()
+showSolidState();
 =>
   {
     store: {

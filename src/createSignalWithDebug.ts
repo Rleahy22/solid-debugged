@@ -19,8 +19,8 @@ export default function createSignalWithDebug<T>(
 
   if ('_SOLID_DEV_') {
     const componentName =
-      new Error().stack?.match(/at .*?\n.*? at (.*?) /)?.[1] ||
-      `component${Math.random() * 1_000_000}`;
+      new Error().stack?.match(/at .*?\n.*? at (.*?) /)?.[1]?.replace('_Hot$$', '') ||
+      `component${Math.floor(Math.random() * 1_000_000)}`;
     const key = options?.name || `prop${Math.floor(Math.random() * 1_000_000)}`;
 
     if (
