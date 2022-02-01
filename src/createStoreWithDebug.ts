@@ -19,21 +19,21 @@ export default function createStoreWithDebug<T extends StoreNode>(
     const key = options?.name || `store${Math.floor(Math.random() * 1_000_000)}`;
 
     if (
-      (window as any).SOLID_DEBUG?.store &&
-      typeof (window as any).SOLID_DEBUG.store === 'object'
+      (window as any).SOLID_DEBUG?.$$Store &&
+      typeof (window as any).SOLID_DEBUG.$$Store === 'object'
     ) {
-      (window as any).SOLID_DEBUG.store = {
-        ...(window as any).SOLID_DEBUG.store,
+      (window as any).SOLID_DEBUG.$$Store = {
+        ...(window as any).SOLID_DEBUG.$$Store,
         [key]: store,
       };
     } else {
-      (window as any).SOLID_DEBUG.store = {
+      (window as any).SOLID_DEBUG.$$Store = {
         [key]: store,
       };
     }
 
-    (window as any).SOLID_DEBUG.store = {
-      ...(window as any).SOLID_DEBUG.store,
+    (window as any).SOLID_DEBUG.$$Store = {
+      ...(window as any).SOLID_DEBUG.$$Store,
       [key]: store,
     };
   }
