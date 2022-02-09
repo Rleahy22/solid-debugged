@@ -16,7 +16,7 @@ export default function createStoreWithDebug<T extends StoreNode>(
   const newStore = createStore(store, options);
 
   if ('_SOLID_DEV_') {
-    const key = options?.name || `store${Math.floor(Math.random() * 1_000_000)}`;
+    const key = options?.name || `$store${Math.floor(Math.random() * 1_000_000)}`;
 
     if (
       (window as any).SOLID_DEBUG?.$$Store &&

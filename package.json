@@ -3,7 +3,7 @@
     "typescript": "^4.5.5"
   },
   "name": "solid-debugged",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Add debugging info to solid signals, props, resources, and store",
   "main": "index.js",
   "scripts": {

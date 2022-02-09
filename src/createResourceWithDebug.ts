@@ -1,4 +1,5 @@
-import { createResource, ResourceFetcher, ResourceFetcherInfo, ResourceReturn } from 'solid-js';
+import { createResource, ResourceFetcher, ResourceReturn } from 'solid-js';
+import { ResourceOptions } from 'solid-js/types/reactive/signal';
 
 import initializeSolidDebug from './initializeSolidDebug';
 
@@ -9,19 +10,7 @@ if ('_SOLID_DEV_') {
 export default function createResourceWithDebug<T, S>(
   source: false | S | (() => false | S | null) | null,
   fetcher: ResourceFetcher<S, T>,
-  options?: T extends undefined
-    ? {
-        initialValue?: T;
-        name?: string;
-        globalRefetch?: boolean;
-        onHydrated?: <S, T>(k: S, info: ResourceFetcherInfo<T>) => void;
-      }
-    : {
-        initialValue: T;
-        name?: string;
-        globalRefetch?: boolean;
-        onHydrated?: <S, T>(k: S, info: ResourceFetcherInfo<T>) => void;
-      },
+  options?: ResourceOptions<T>,
 ): ResourceReturn<T | undefined> {
   const [resource, { mutate, refetch }] = createResource(source, fetcher, options || undefined);
 
@@ -29,7 +18,7 @@ export default function createResourceWithDebug<T, S>(
     const componentName =
       new Error().stack?.match(/at .*?\n.*? at (.*?) /)?.[1]?.replace('_Hot$$', '') ||
       `component${Math.floor(Math.random() * 1_000_000)}`;
-    const key = options?.name || `prop${Math.floor(Math.random() * 1_000_000)}`;
+    const key = options?.name || `$resource${Math.floor(Math.random() * 1_000_000)}`;
 
     if (
       (window as any).SOLID_DEBUG?.[componentName] &&
