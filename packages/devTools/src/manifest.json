@@ -1,0 +1,7 @@
+{
+  "manifest_version": 2,
+  "name": "solidDebugged DevTools",
+  "version": "0.0.1",
+  "description": "devtools extension for solid-js using solidDebugged",
+  "devtools_page": "./devtools-background.html"
+}
