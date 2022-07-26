@@ -1,4 +1,5 @@
-import { Accessor, createSignal, Setter } from 'solid-js';
+import { createSignal } from 'solid-js';
+import { Signal } from 'solid-js/types/reactive/signal';
 import initializeSolidDebug from './initializeSolidDebug';
 
 if ('_SOLID_DEV_') {
@@ -14,7 +15,7 @@ export default function createSignalWithDebug<T>(
         internal?: boolean | undefined;
       }
     | undefined,
-): [get: Accessor<T>, set: Setter<T>] {
+): Signal<T> {
   const [value, setValue] = createSignal(initialValue, options);
 
   if ('_SOLID_DEV_') {
